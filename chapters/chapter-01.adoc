@@ -153,3 +153,148 @@ implementar los respectivos métodos dunder.
 Así, si fueras a crear tu propio tipo de contenedor, podrías implementar 
 el método dunder `\\__contains__` para asegurarte de que tus contenedores 
 pudieran estar en el lado derecho de una expresión con el operador `in`.
+
+==== 1.1.5 Lista de métodos dunder y sus interacciones
+
+Como hemos visto, los métodos dunder son (típicamente) llamados implícitamente 
+por el lenguaje... ¿Pero cuándo? El método dunder `\\__init__` es llamado cuando se inicializa una instancia de una clase, pero ¿qué pasa con `\\__str__`, o
+`\\ __bool__`, u otros métodos dunder?
+
+La siguiente tabla enumera todos los métodos dunder junto con uno o más ejemplos 
+de uso (simplificados) que llamarían implícitamente al método dunder respectivo.
+Esto puede incluir breves descripciones de situaciones en las que el método
+dunder relevante podría ser llamado, o ejemplos de llamadas a funciones que 
+dependen de ese método dunder. Estas situaciones de ejemplo pueden tener 
+advertencias asociadas, así que asegúrese de leer la documentación sobre los 
+métodos dunder siempre que quiera jugar con un método dunder con el que no esté familiarizado.
+
+El orden de las filas de la tabla coincide con el orden en que se mencionan estos 
+métodos dunder en la página "Modelo de datos" de la documentación, lo que no implica 
+ninguna dependencia entre los distintos métodos dunder, ni tampoco un nivel de 
+dificultad en la comprensión de los métodos.
+
+Para una lista completa de los métodos dunder y su descripción ver:
+https://mathspp.com/blog/pydonts/dunder-methods#list-of-dunder-methods-and-their-interactions
+
+==== 1.1.6 Explorando un método dunder
+
+Siempre que trabaje con un nuevo método dunder, lo primero que debe hacer es jugar con él.
+
+A continuación, se comparte tres pasos que se pueden usar cuando se explora un nuevo 
+método dunder:
+
+. intentar comprender cuándo se llama al método dunder;
+. implementar un stub para ese método y activarlo con código; y
+. utilizar el método dunder en una situación útil.
+
+A continuación un ejemplo de cómo seguir estos pasos con un ejemplo práctico, el método dunder `\\__missing__`.
+
+¿Para qué sirve el método dunder `\\__missing__`? La documentación del método dunder `\\__missing__` dice:
+
+[quote]
+Llamado por `dict.\\__getitem__()` para implementar `self[key]` para subclases de dict cuando la key no está en el diccionario.
+
+En otras palabras, el método dunder `\\__missing__` sólo es relevante para las subclases 
+de dict, y es llamado siempre que no podamos encontrar una clave dada en el diccionario.
+
+¿Cómo activar el método dunder? +
+¿En qué situaciones, que pueda recrear, se llama al método dunder `\\__missing__`?
+
+Por el texto de la documentación, parece que necesitamos una subclase de diccionario, y luego necesitamos acceder a una clave que no exista en ese diccionario. Por lo tanto, esto debería ser suficiente para activar el método dunder __missing__:
+
+[source, python]
+----
+class DictSubclass(dict):
+    def __missing__(self, key):
+        print("Hello, world!")
+
+my_dict = DictSubclass()
+my_dict["this key isn't available"]
+
+# Hello, world!
+----
+Note lo básico que es el código anterior: Sólo se definió un método llamado `\\__missing__`
+y se hizo un print, sólo para poder comprobar que `\\__missing__` estaba siendo llamado.
+
+Ahora se realizarán un par de pruebas más, sólo para asegurarnos de que `\\__missing__` 
+realmente sólo se llama cuando se intenta obtener el valor de una clave que no existe:
+
+[source, python]
+----
+class DictSubclass(dict):
+    def __missing__(self, key):
+        print(f"Missing {key = }")
+
+my_dict = DictSubclass()
+my_dict[0] = True
+if my_dict[0]:
+    print("Key 0 was `True`.")
+
+# Prints: Key 0 was `True`
+my_dict[1]  # Prints: Missing key = 1
+----
+
+*Utilizar el método dunder en una situación útil* +
+Ahora que tenemos una idea más clara de cuándo `\\__missing__` entra en juego, 
+podemos usarlo para algo útil. Por ejemplo, podemos intentar implementar `defaultdict` 
+basándonos en `\\__missing__`.
+
+`defaultdict` es un contenedor del módulo https://docs.python.org/3/library/collections.html[`collections`], 
+y es como un diccionario, excepto que utiliza una fábrica para generar valores 
+predefinidos cuando faltan claves.
+
+Por ejemplo, aquí hay una instancia de `defaultdict` que devuelve el valor `0` de forma predetermnada:
+
+[source, python]
+----
+from collections import defaultdict
+
+olympic_medals = defaultdict(lambda: 0)  # Produce 0 by default
+olympic_medals["Phelps"] = 28
+
+print(olympic_medals["Phelps"])  # 28
+print(olympic_medals["me"])  # 0
+----
+
+Así que, para reimplementar `defaultdict`, necesitamos aceptar una función de 
+fábrica, necesitamos guardar esa fábrica, y necesitamos usarla dentro de 
+`\\__missing__`.
+
+Sólo como una nota al margen, observe que `defaultdict` no sólo devuelve el valor 
+predefinido, sino que también lo asigna a la clave que no estaba allí antes:
+
+[source, python]
+----
+>>> from collections import defaultdict
+>>> olympic_medals = defaultdict(lambda: 0)  # Produce 0 by default
+>>> olympic_medals
+defaultdict(<function <lambda> at 0x000001F15404F1F0>, {})
+>>> # Notice the underlying dictionary is empty -------^^
+>>> olympic_medals["me"]
+0
+>>> olympic_medals
+defaultdict(<function <lambda> at 0x000001F15404F1F0>, {'me': 0})
+>>> # It's not empty anymore --------------------------^^^^^^^^^
+----
+
+Teniendo en cuenta todo esto, he aquí una posible reimplementación de 
+`defaultdict`:
+
+[source, python]
+----
+class my_defaultdict(dict):
+    def __init__(self, default_factory, **kwargs):
+        super().__init__(**kwargs)
+        self.default_factory = default_factory
+
+    def __missing__(self, key):
+        """Populate the missing key and return its value."""
+        self[key] = self.default_factory()
+        return self[key]
+
+olympic_medals = my_defaultdict(lambda: 0)  # Produce 0 by default
+olympic_medals["Phelps"] = 28
+
+print(olympic_medals["Phelps"])  # 28
+print(olympic_medals["me"])  # 0
+----
