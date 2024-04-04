@@ -1,0 +1,155 @@
+= Unidad 1.
+
+== Aspectos avanzados del lenguaje
+
+El propósito de este capítulo introductorio es darle a conocer al estudiante 
+algunos aspectos que se mencionarán en el curso y, que tal vez, no haya manejado 
+en los cursos y tutoriales básicos del lenguaje Python. Es así que manejaremos 
+los conceptos de lo que son y para qué se usan las funciones generadoras, los 
+decoradores y nos adentraremos en conocer los llamados métodos “mágicos” también 
+conocidas como métodos dunder. Al final de cada tema se deja algunas referencias 
+para que puedan profundizar y practicar los conceptos aquí mencionados. Al igual 
+que en el capítulo Referencias, donde se muestran más enlaces a sitios con más 
+ejemplos y aplicaciones.
+
+=== Métodos mágicos (métodos dunder).
+
+Python es un lenguaje que tiene un rico conjunto de funciones y operadores 
+incorporados que funcionan realmente bien con los tipos incorporados. Por ejemplo, 
+el operador + funciona con números, como suma, pero también funciona con cadenas, 
+listas y tuplas, como concatenación:
+
+[source,python]
+----
+>>> 1 + 2.3
+3.3
+>>> [1, 2, 3] + [4, 5, 6]
+[1, 2, 3, 4, 5, 6]
+----
+
+Pero, ¿qué es lo que define que + sea suma para números (enteros y flotantes) 
+y concatenación para listas, tuplas, cadenas? ¿Y si quisiera que + funcionara 
+con otros tipos? ¿Podría hacerlo?
+
+La respuesta corta es "sí", y eso ocurre a través de los métodos dunder, 
+objeto de estudio en esta sección.
+
+==== 1.1.1 ¿Qué son los métodos dunder?
+
+En Python, los métodos dunder son métodos que permiten a las instancias de una 
+clase interactuar con las funciones y operadores incorporados del lenguaje. La 
+palabra "dunder" viene de "double underscore", porque los nombres de los métodos 
+dunder empiezan y terminan con dos guiones bajos, por ejemplo `\\__str__` o 
+`\\__add__`. Normalmente, los métodos dunder no son invocados directamente por 
+el programador, lo que hace que parezca que son llamados por arte de magia. Por 
+eso, a veces también se hace referencia a los métodos dunder como "métodos mágicos".
+
+Sin embargo, los métodos dunder no se invocan por arte de magia. Simplemente son 
+llamados implícitamente por el lenguaje, en momentos específicos que están bien 
+definidos, y que dependen del método dunder en cuestión.
+
+==== 1.1.2. El método dunder que todo el mundo conoce
+
+Si ha definido clases en Python, seguro que se ha cruzado con un método dunder: `\\__init__()`. 
+El método dunder `\\__init__()` se encarga de inicializar tu instancia de la clase, por lo que 
+es ahí donde sueles establecer un montón de atributos relacionados con los argumentos que 
+recibió la clase.
+
+Por ejemplo, si estuvieras creando una instancia de una clase Square, crearías el atributo 
+para la longitud del lado en `\\__init__()`:
+
+[source,python]
+----
+class Square:
+    def __init__(self, side_length):
+        """__init__ es el método dunder que INITcializa la instancia.
+
+        Para crear un cuadrado, se necesita conocer la longitud de su lado,
+        de manera se der pasado como un argumento, p. ejm. con Square(1).
+        Para asegurar que la instancia conoce su propia longitud de lado,
+        es salvada con self.side_length = side_length.
+        """
+        print("Dentro del init!")
+        self.side_length = side_length
+
+sq = Square(1)
+
+# Dentro del init!
+----
+
+¡Si ejecutas el código anterior, verá que se imprime el mensaje "Dentro del init!", 
+y sin embargo, ¡no llamaste al método `\\__init__()` directamente! El método 
+`\\__init__()` fue llamado implícitamente por el lenguaje cuando creaste tu instancia 
+de un cuadrado. Los métodos dunder no están destinados a ser llamados directamente 
+en el código, sino que son llamados por el intérprete mientras se ejecuta el programa. 
+En resumen, los métodos dunder son una herramienta muy útil en Python para definir 
+el comportamiento de los objetos en relación a operaciones integradas comunes.
+
+==== 1.1.3 ¿Por qué los métodos dunder empiezan y terminan con dos guiones bajos?
+
+Los dos guiones bajos al principio y al final del nombre de un método dunder no tienen 
+ningún significado especial. En otras palabras, el hecho de que el nombre del método 
+empiece y termine con dos guiones bajos, en sí mismo, no tiene nada de especial. Los dos 
+guiones bajos están ahí sólo para evitar la colisión de nombres con otros métodos 
+implementados por programadores desprevenidos.
+
+Piénselo de esta manera: Python tiene un built-in llamado sum. Se puede definir sum para 
+que sea otra cosa, pero entonces  se pierde el acceso al built-in que suma cosas, ¿verdad?
+
+[source,python]
+----
+>>> sum(range(10))
+45
+>>> sum = 45
+>>> sum(range(10))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not callable
+----
+
+A menudo se ve a principiantes usando sum como nombre de variable porque no saben que sum 
+es en realidad una función incorporada (built-in). Si la función incorporada se llamara
+`\\__sum__`  en lugar de sum, sería mucho más difícil anularla por error, ¿verdad? Pero 
+también sería mucho menos conveniente usar `sum`...
+
+Sin embargo, para los métodos mágicos, no necesitamos que sus nombres sean muy cómodos de 
+escribir, porque casi nunca se escribe el nombre de un método mágico. Por lo tanto, Python 
+decidió que los métodos mágicos tendrían nombres que empezaran y terminaran con dos guiones 
+bajos, ¡para que fuera menos probable que alguien anulara uno de esos métodos por accidente!
+
+En definitiva, los métodos dunder son como cualquier otro método que hayas implementado, con 
+la pequeña excepción de que los métodos dunder pueden ser llamados implícitamente por el lenguaje.
+
+==== 1.1.4.Sobreescritura de operadores en Python y métodos dunder
+
+Todos los operadores de Python, como +, ==, e in, dependen de métodos dunder para implementar 
+su comportamiento.
+
+Por ejemplo, cuando Python encuentra el código `value in container`, en realidad lo convierte 
+en una llamada al método dunder apropiado `\\__contains__`, lo que significa que Python en 
+realidad ejecuta la expresión `container.\\__contains__(value)`.
+
+Veamos:
+
+[source,python]
+----
+>>> my_list = [2, 4, 6]
+
+>>> 3 in my_list
+False
+>>> my_list.__contains__(3)
+False
+
+>>> 6 in my_list
+True
+>>> my_list.__contains__(6)
+True
+----
+
+Por lo tanto, cuando se quiera sobrecargar ciertos operadores para que 
+funcionen de forma personalizada con objetos propios, se necesita 
+implementar los respectivos métodos dunder.
+
+Así, si fueras a crear tu propio tipo de contenedor, podrías implementar 
+el método dunder `\\__contains__` para asegurarte de que tus contenedores 
+pudieran estar en el lado derecho de una expresión con el operador `in`.

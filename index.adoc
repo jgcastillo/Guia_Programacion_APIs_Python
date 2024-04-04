@@ -1,0 +1,53 @@
+// Basic info: title, author, etc.
+= Guía Programación de APIs con Python
+:author: José Gregorio Castillo Pacheco
+:email: jocastil@ucab.edu.ve
+:revnumber: v0.1
+:revdate: 2 de abril de 2024
+:lang: es
+:description: En la presente guía encontrará los \
+fundamentos sobre los cuales se basa la materia \
+"Programación de APIs con Python".
+//
+// Set the cover image
+//:front-cover-image: image:cover.svg[fit=cover]
+//
+// Don't display a title page, since we have a cover image.
+//:notitle:
+//
+// Render as a book; each chapter will get its own section.
+:doctype: book
+//
+// Prefix nmbered chapter titles with "Chapter"
+:chapter-label: Chapter
+//
+// Add a table of contents
+:toc: left
+:toclevels: 2
+:toc-title: Contenido
+//
+// Number the first 2 levels of headings.
+:sectnumlevels: 2
+//
+// Hide the scheme from links in the text.
+// e.g. a link to https://github.com/ should appear as github.com/.
+:hide-uri-scheme:
+//
+// Use rouge for source highlighting, and set the style.
+:source-highlighter: rouge
+:rouge-style: github
+:tabsize: 4
+
+// -- Book content includes --
+
+// Include the non-numbered sections (preface, introduction, etc).
+[preface]
+include::chapters/preface.adoc[]
+
+include::chapters/introduction.adoc[]
+
+// Enable chapter numbering.
+:sectnums:
+
+// Include the numbered chapters.
+include::chapters/chapter-01.adoc[]

@@ -1,0 +1,11 @@
+== Prefacio
+El presente libro se ha escrito con la finalidad de 
+contar con un material que sirva de guía a los estudiantes 
+que cursan la materia "Programación de APIs con Python".
+
+Gran parte del material está fundamentado en dos libros
+importantes que han servido de inspiración para la presente
+guia. El primero es "Architecture Patterns with Python. Enabling
+Test_driven Development, Domain-Driven Desing, and Event-Driven
+Microservices" de Harry Percival y Bob Gregory y el segundo es
+"Test-Driven Development with Python" de Harry Percival
