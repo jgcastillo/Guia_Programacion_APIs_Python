@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<meta name="description" content="En la presente guía encontrará los fundamentos sobre los cuales se basa la materia "Programación de APIs con Python".">
+<meta name="author" content="José Gregorio Castillo Pacheco">
+<title>Guía Programación de APIs con Python</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+</head>
+<body id="_unidad_1_aspectos_avanzados_del_lenguaje" class="book toc2 toc-left">
+<div id="header">
+<h1>Guía Programación de APIs con Python</h1>
+<div class="details">
+<span id="author" class="author">José Gregorio Castillo Pacheco</span><br>
+<span id="email" class="email"><a href="mailto:jocastil@ucab.edu.ve">jocastil@ucab.edu.ve</a></span><br>
+<span id="revnumber">version v0.1,</span>
+<span id="revdate">2 de abril de 2024</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Contenido</div>
+<p><span class="toc-root"><a href="index.html">Guía Programación de APIs con Python</a></span></p><ul class="sectlevel1">
+<li><a href="_prefacio.html">Prefacio</a>
+</li>
+<li><a href="_introducción.html">Introducción</a>
+</li>
+<li><a href="_unidad_1_aspectos_avanzados_del_lenguaje.html"><span class="toc-current">1. Unidad 1: Aspectos avanzados del lenguaje</span></a>
+<ul class="sectlevel2">
+<li><a href="_unidad_1_aspectos_avanzados_del_lenguaje.html#_métodos_mágicos_métodos_dunder">1.1. Métodos mágicos (métodos dunder).</a>
+</li>
+<li><a href="_unidad_1_aspectos_avanzados_del_lenguaje.html#_type_hints">1.2. Type Hints</a>
+</li>
+<li><a href="_unidad_1_aspectos_avanzados_del_lenguaje.html#_funciones_generadoras">1.3. Funciones Generadoras</a>
+</li>
+</ul>
+</li>
+<li><a href="_bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_unidad_1_aspectos_avanzados_del_lenguaje"><a class="link" href="#_unidad_1_aspectos_avanzados_del_lenguaje">1. Unidad 1: Aspectos avanzados del lenguaje</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>El propósito de este capítulo introductorio es darle a conocer al estudiante
+algunos aspectos que se mencionarán en el curso y, que tal vez, no haya manejado
+en los cursos y tutoriales básicos del lenguaje Python. Es así que manejaremos
+los conceptos de lo que son y para qué se usan las funciones generadoras, los
+decoradores y nos adentraremos en conocer los llamados métodos “mágicos” también
+conocidas como métodos dunder. Al final de cada tema se deja algunas referencias
+para que puedan profundizar y practicar los conceptos aquí mencionados. Al igual
+que en el capítulo Referencias, donde se muestran más enlaces a sitios con más
+ejemplos y aplicaciones.</p>
+</div>
+<div class="sect2">
+<h3 id="_métodos_mágicos_métodos_dunder"><a class="link" href="#_métodos_mágicos_métodos_dunder">1.1. Métodos mágicos (métodos dunder).</a></h3>
+<div class="paragraph">
+<p>Python es un lenguaje que tiene un rico conjunto de funciones y operadores
+incorporados que funcionan realmente bien con los tipos incorporados. Por ejemplo,
+el operador + funciona con números, como suma, pero también funciona con cadenas,
+listas y tuplas, como concatenación:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">2.3</span>
+<span class="mf">3.3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pero, ¿qué es lo que define que <code><strong>+</strong></code> sea suma para números (enteros y flotantes)
+y concatenación para listas, tuplas, cadenas? ¿Y si quisiera que <code><strong>+</strong></code> funcionara
+con otros tipos? ¿Podría hacerlo?</p>
+</div>
+<div class="paragraph">
+<p>La respuesta corta es "sí", y eso ocurre a través de los métodos dunder,
+objeto de estudio en esta sección.</p>
+</div>
+<div class="sect3">
+<h4 id="_1_1_1_qué_son_los_métodos_dunder"><a class="link" href="#_1_1_1_qué_son_los_métodos_dunder">1.1.1 ¿Qué son los métodos dunder?</a></h4>
+<div class="paragraph">
+<p>En Python, los métodos dunder son métodos que permiten a las instancias de una
+clase interactuar con las funciones y operadores incorporados del lenguaje. La
+palabra "dunder" viene de "double underscore", porque los nombres de los métodos
+dunder empiezan y terminan con dos guiones bajos, por ejemplo <code>__str__</code> o
+<code>__add__</code>. Normalmente, los métodos dunder no son invocados directamente por
+el programador, lo que hace que parezca que son llamados por arte de magia. Por
+eso, a veces también se hace referencia a los métodos dunder como "métodos mágicos".</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, los métodos dunder no se invocan por arte de magia. Simplemente son
+llamados implícitamente por el lenguaje, en momentos específicos que están bien
+definidos, y que dependen del método dunder en cuestión.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_1_2_el_método_dunder_que_todo_el_mundo_conoce"><a class="link" href="#_1_1_2_el_método_dunder_que_todo_el_mundo_conoce">1.1.2. El método dunder que todo el mundo conoce</a></h4>
+<div class="paragraph">
+<p>Si ha definido clases en Python, seguro que se ha cruzado con un método dunder: <code>__init__()</code>.
+El método dunder <code>__init__()</code> se encarga de inicializar tu instancia de la clase, por lo que
+es ahí donde sueles establecer un montón de atributos relacionados con los argumentos que
+recibió la clase.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, si estuvieras creando una instancia de una clase Square, crearías el atributo
+para la longitud del lado en <code>__init__()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Square</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">side_length</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">__init__ es el método dunder que INITcializa la instancia.
+
+        Para crear un cuadrado, se necesita conocer la longitud de su lado,
+        de manera se der pasado como un argumento, p. ejm. con Square(1).
+        Para asegurar que la instancia conoce su propia longitud de lado,
+        es salvada con self.side_length = side_length.
+        </span><span class="sh">"""</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Dentro del init!</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">side_length</span> <span class="o">=</span> <span class="n">side_length</span>
+
+<span class="n">sq</span> <span class="o">=</span> <span class="nc">Square</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Dentro del init!</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>¡Si ejecutas el código anterior, verá que se imprime el mensaje "Dentro del init!",
+y sin embargo, ¡no llamaste al método <code>__init__()</code> directamente! El método
+<code>__init__()</code> fue llamado implícitamente por el lenguaje cuando creaste tu instancia
+de un cuadrado. Los métodos dunder no están destinados a ser llamados directamente
+en el código, sino que son llamados por el intérprete mientras se ejecuta el programa.
+En resumen, los métodos dunder son una herramienta muy útil en Python para definir
+el comportamiento de los objetos en relación a operaciones integradas comunes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_1_3_por_qué_los_métodos_dunder_empiezan_y_terminan_con_dos_guiones_bajos"><a class="link" href="#_1_1_3_por_qué_los_métodos_dunder_empiezan_y_terminan_con_dos_guiones_bajos">1.1.3 ¿Por qué los métodos dunder empiezan y terminan con dos guiones bajos?</a></h4>
+<div class="paragraph">
+<p>Los dos guiones bajos al principio y al final del nombre de un método dunder no tienen
+ningún significado especial. En otras palabras, el hecho de que el nombre del método
+empiece y termine con dos guiones bajos, en sí mismo, no tiene nada de especial. Los dos
+guiones bajos están ahí sólo para evitar la colisión de nombres con otros métodos
+implementados por programadores desprevenidos.</p>
+</div>
+<div class="paragraph">
+<p>Piénselo de esta manera: Python tiene un built-in llamado sum. Se puede definir sum para
+que sea otra cosa, pero entonces  se pierde el acceso al built-in que suma cosas, ¿verdad?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="mi">45</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">45</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nc">Traceback </span><span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="sh">"</span><span class="s">&lt;stdin&gt;</span><span class="sh">"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nb">TypeError</span><span class="p">:</span> <span class="sh">'</span><span class="s">int</span><span class="sh">'</span> <span class="nb">object</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">callable</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A menudo se ve a principiantes usando sum como nombre de variable porque no saben que sum
+es en realidad una función incorporada (built-in). Si la función incorporada se llamara
+<code>__sum__</code>  en lugar de sum, sería mucho más difícil anularla por error, ¿verdad? Pero
+también sería mucho menos conveniente usar <code>sum</code>&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, para los métodos mágicos, no necesitamos que sus nombres sean muy cómodos de
+escribir, porque casi nunca se escribe el nombre de un método mágico. Por lo tanto, Python
+decidió que los métodos mágicos tendrían nombres que empezaran y terminaran con dos guiones
+bajos, ¡para que fuera menos probable que alguien anulara uno de esos métodos por accidente!</p>
+</div>
+<div class="paragraph">
+<p>En definitiva, los métodos dunder son como cualquier otro método que hayas implementado, con
+la pequeña excepción de que los métodos dunder pueden ser llamados implícitamente por el lenguaje.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_1_4_sobreescritura_de_operadores_en_python_y_métodos_dunder"><a class="link" href="#_1_1_4_sobreescritura_de_operadores_en_python_y_métodos_dunder">1.1.4.Sobreescritura de operadores en Python y métodos dunder</a></h4>
+<div class="paragraph">
+<p>Todos los operadores de Python, como <code>+</code>, <code>==</code>, e <code>in</code>, dependen de métodos dunder para implementar
+su comportamiento.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, cuando Python encuentra el código <code>value in container</code>, en realidad lo convierte
+en una llamada al método dunder apropiado <code>__contains__</code>, lo que significa que Python en
+realidad ejecuta la expresión <code>container.__contains__(value)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Veamos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span> <span class="ow">in</span> <span class="n">my_list</span>
+<span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span><span class="p">.</span><span class="nf">__contains__</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="bp">False</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">6</span> <span class="ow">in</span> <span class="n">my_list</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span><span class="p">.</span><span class="nf">__contains__</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="bp">True</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Por lo tanto, cuando se quiera sobrecargar ciertos operadores para que
+funcionen de forma personalizada con objetos propios, se necesita
+implementar los respectivos métodos dunder.</p>
+</div>
+<div class="paragraph">
+<p>Así, si fueras a crear tu propio tipo de contenedor, podrías implementar
+el método dunder <code>__contains__</code> para asegurarte de que tus contenedores
+pudieran estar en el lado derecho de una expresión con el operador <code>in</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_1_5_lista_de_métodos_dunder_y_sus_interacciones"><a class="link" href="#_1_1_5_lista_de_métodos_dunder_y_sus_interacciones">1.1.5 Lista de métodos dunder y sus interacciones</a></h4>
+<div class="paragraph">
+<p>Como hemos visto, los métodos dunder son (típicamente) llamados implícitamente
+por el lenguaje&#8230;&#8203; ¿Pero cuándo? El método dunder <code>__init__</code> es llamado cuando se inicializa una instancia de una clase, pero ¿qué pasa con <code>__str__</code>, o
+<code>__bool__</code>, u otros métodos dunder?</p>
+</div>
+<div class="paragraph">
+<p>La siguiente tabla enumera todos los métodos dunder junto con uno o más ejemplos
+de uso (simplificados) que llamarían implícitamente al método dunder respectivo.
+Esto puede incluir breves descripciones de situaciones en las que el método
+dunder relevante podría ser llamado, o ejemplos de llamadas a funciones que
+dependen de ese método dunder. Estas situaciones de ejemplo pueden tener
+advertencias asociadas, así que asegúrese de leer la documentación sobre los
+métodos dunder siempre que quiera jugar con un método dunder con el que no esté familiarizado.</p>
+</div>
+<div class="paragraph">
+<p>El orden de las filas de la tabla coincide con el orden en que se mencionan estos
+métodos dunder en la página "Modelo de datos" de la documentación, lo que no implica
+ninguna dependencia entre los distintos métodos dunder, ni tampoco un nivel de
+dificultad en la comprensión de los métodos.</p>
+</div>
+<div class="paragraph">
+<p>Para una lista completa de los métodos dunder y su descripción ver:
+<a href="https://mathspp.com/blog/pydonts/dunder-methods#list-of-dunder-methods-and-their-interactions" class="bare">mathspp.com/blog/pydonts/dunder-methods#list-of-dunder-methods-and-their-interactions</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_1_6_explorando_un_método_dunder"><a class="link" href="#_1_1_6_explorando_un_método_dunder">1.1.6 Explorando un método dunder</a></h4>
+<div class="paragraph">
+<p>Siempre que trabaje con un nuevo método dunder, lo primero que debe hacer es jugar con él.</p>
+</div>
+<div class="paragraph">
+<p>A continuación, se comparte tres pasos que se pueden usar cuando se explora un nuevo
+método dunder:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>intentar comprender cuándo se llama al método dunder;</p>
+</li>
+<li>
+<p>implementar un stub para ese método y activarlo con código; y</p>
+</li>
+<li>
+<p>utilizar el método dunder en una situación útil.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>A continuación un ejemplo de cómo seguir estos pasos con un ejemplo práctico, el método dunder <code>__missing__</code>.</p>
+</div>
+<div class="paragraph">
+<p>¿Para qué sirve el método dunder <code>__missing__</code>? La documentación del método dunder <code>__missing__</code> dice:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+Llamado por <code>dict.__getitem__()</code> para implementar <code>self[key]</code> para subclases de dict cuando la key no está en el diccionario.
+</blockquote>
+</div>
+<div class="paragraph">
+<p>En otras palabras, el método dunder <code>__missing__</code> sólo es relevante para las subclases
+de dict, y es llamado siempre que no podamos encontrar una clave dada en el diccionario.</p>
+</div>
+<div class="paragraph">
+<p>¿Cómo activar el método dunder?<br>
+¿En qué situaciones, que pueda recrear, se llama al método dunder <code>__missing__</code>?</p>
+</div>
+<div class="paragraph">
+<p>Por el texto de la documentación, parece que necesitamos una subclase de diccionario, y luego necesitamos acceder a una clave que no exista en ese diccionario. Por lo tanto, esto debería ser suficiente para activar el método dunder <em>missing</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">DictSubclass</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__missing__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Hello, world!</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">my_dict</span> <span class="o">=</span> <span class="nc">DictSubclass</span><span class="p">()</span>
+<span class="n">my_dict</span><span class="p">[</span><span class="sh">"</span><span class="s">this key isn</span><span class="sh">'</span><span class="s">t available</span><span class="sh">"</span><span class="p">]</span>
+
+<span class="c1"># Hello, world!</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note lo básico que es el código anterior: Sólo se definió un método llamado <code>__missing__</code>
+y se hizo un print, sólo para poder comprobar que <code>__missing__</code> estaba siendo llamado.</p>
+</div>
+<div class="paragraph">
+<p>Ahora se realizarán un par de pruebas más, sólo para asegurarnos de que <code>__missing__</code>
+realmente sólo se llama cuando se intenta obtener el valor de una clave que no existe:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">DictSubclass</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__missing__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Missing </span><span class="si">{</span><span class="n">key</span> <span class="o">=</span> <span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">my_dict</span> <span class="o">=</span> <span class="nc">DictSubclass</span><span class="p">()</span>
+<span class="n">my_dict</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="k">if</span> <span class="n">my_dict</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Key 0 was `True`.</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># Prints: Key 0 was `True`
+</span><span class="n">my_dict</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Prints: Missing key = 1</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Utilizar el método dunder en una situación útil</strong><br>
+Ahora que tenemos una idea más clara de cuándo <code>__missing__</code> entra en juego,
+podemos usarlo para algo útil. Por ejemplo, podemos intentar implementar <code>defaultdict</code>
+basándonos en <code>__missing__</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>defaultdict</code> es un contenedor del módulo <a href="https://docs.python.org/3/library/collections.html"><code>collections</code></a>,
+y es como un diccionario, excepto que utiliza una fábrica para generar valores
+predefinidos cuando faltan claves.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, aquí hay una instancia de <code>defaultdict</code> que devuelve el valor <code>0</code> de forma predetermnada:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="n">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">olympic_medals</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Produce 0 by default
+</span><span class="n">olympic_medals</span><span class="p">[</span><span class="sh">"</span><span class="s">Phelps</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">28</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">olympic_medals</span><span class="p">[</span><span class="sh">"</span><span class="s">Phelps</span><span class="sh">"</span><span class="p">])</span>  <span class="c1"># 28
+</span><span class="nf">print</span><span class="p">(</span><span class="n">olympic_medals</span><span class="p">[</span><span class="sh">"</span><span class="s">me</span><span class="sh">"</span><span class="p">])</span>  <span class="c1"># 0</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Así que, para reimplementar <code>defaultdict</code>, necesitamos aceptar una función de
+fábrica, necesitamos guardar esa fábrica, y necesitamos usarla dentro de
+<code>__missing__</code>.</p>
+</div>
+<div class="paragraph">
+<p>Sólo como una nota al margen, observe que <code>defaultdict</code> no sólo devuelve el valor
+predefinido, sino que también lo asigna a la clave que no estaba allí antes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="n">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">olympic_medals</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Produce 0 by default
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">olympic_medals</span>
+<span class="nf">defaultdict</span><span class="p">(</span><span class="o">&lt;</span><span class="n">function</span> <span class="o">&lt;</span><span class="k">lambda</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x000001F15404F1F0</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">{})</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Notice the underlying dictionary is empty -------^^
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">olympic_medals</span><span class="p">[</span><span class="sh">"</span><span class="s">me</span><span class="sh">"</span><span class="p">]</span>
+<span class="mi">0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">olympic_medals</span>
+<span class="nf">defaultdict</span><span class="p">(</span><span class="o">&lt;</span><span class="n">function</span> <span class="o">&lt;</span><span class="k">lambda</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x000001F15404F1F0</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">me</span><span class="sh">'</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># It's not empty anymore --------------------------^^^^^^^^^</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Teniendo en cuenta todo esto, he aquí una posible reimplementación de
+<code>defaultdict</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">my_defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">default_factory</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">default_factory</span> <span class="o">=</span> <span class="n">default_factory</span>
+
+    <span class="k">def</span> <span class="nf">__missing__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">Populate the missing key and return its value.</span><span class="sh">"""</span>
+        <span class="n">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">default_factory</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+<span class="n">olympic_medals</span> <span class="o">=</span> <span class="nf">my_defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Produce 0 by default
+</span><span class="n">olympic_medals</span><span class="p">[</span><span class="sh">"</span><span class="s">Phelps</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">28</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">olympic_medals</span><span class="p">[</span><span class="sh">"</span><span class="s">Phelps</span><span class="sh">"</span><span class="p">])</span>  <span class="c1"># 28
+</span><span class="nf">print</span><span class="p">(</span><span class="n">olympic_medals</span><span class="p">[</span><span class="sh">"</span><span class="s">me</span><span class="sh">"</span><span class="p">])</span>  <span class="c1"># 0</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_type_hints"><a class="link" href="#_type_hints">1.2. Type Hints</a></h3>
+<div class="paragraph">
+<p>Los Type Hints, o anotaciones de tipo, son una característica introducida en
+Python 3.5 que permite a los desarrolladores especificar el tipo de datos que
+una variable puede contener o que una función puede recibir y devolver, para
+lo cual se agregó el módulo <code>typing</code>. Aunque Python es un lenguaje de tipado
+dinámico, los Type Hints proporcionan una forma de documentar y clarificar el
+código, mejorando la legibilidad y la mantenibilidad del mismo.</p>
+</div>
+<div class="sect3">
+<h4 id="_por_qué_surgieron_los_type_hints_en_python"><a class="link" href="#_por_qué_surgieron_los_type_hints_en_python">¿Por qué surgieron los Type Hints en Python?</a></h4>
+<div class="paragraph">
+<p>Los Type Hints, o anotaciones de tipo, surgieron en Python como respuesta
+a la necesidad de mejorar la claridad y la mantenibilidad del código en
+proyectos grandes y complejos. A medida que Python ganaba popularidad en
+el desarrollo de aplicaciones empresariales y científicas, se hizo evidente
+que la falta de un sistema de tipos estático podía llevar a confusiones y
+errores difíciles de depurar. Antes de la introducción de los Type Hints,
+los desarrolladores dependían en gran medida de la documentación y los
+comentarios para entender los tipos de datos que una función podría recibir
+o devolver.</p>
+</div>
+<div class="paragraph">
+<p>Con el crecimiento de la comunidad de desarrollo y la adopción de prácticas
+de programación más rigurosas, la necesidad de una forma más formal de especificar
+tipos en Python se hizo cada vez más apremiante. Los Type Hints proporcionaron
+una solución a este problema, permitiendo a los desarrolladores especificar de
+manera explícita los tipos de datos esperados y retornados por una función,
+mejorando así la legibilidad y la comprensión del código.</p>
+</div>
+<div class="paragraph">
+<p>La inclusión de Type Hints en Python no solo respondió a las demandas de los
+desarrolladores, sino que también alineó el lenguaje con las tendencias
+actuales en el desarrollo de software, facilitando la integración con
+herramientas de verificación estática y promoviendo mejores prácticas de
+programación en la comunidad.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_razones_de_la_introducción_de_los_type_hints_en_python"><a class="link" href="#_razones_de_la_introducción_de_los_type_hints_en_python">Razones de la introducción de los Type Hints en Python</a></h4>
+<div class="sect4">
+<h5 id="_legibilidad_y_claridad"><a class="link" href="#_legibilidad_y_claridad">Legibilidad y claridad</a></h5>
+<div class="paragraph">
+<p>Uno de los principales beneficios de utilizar Type Hints en Python es mejorar
+la legibilidad y la claridad del código. Al proporcionar anotaciones de tipo,
+los desarrolladores pueden entender rápidamente qué tipos de datos se esperan
+y se devuelven en una función, sin tener que revisar extensamente la implementación
+o la documentación. Esto facilita la colaboración entre equipos y reduce la
+curva de aprendizaje para nuevos desarrolladores que se incorporan a un proyecto.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_verificación_estática_del_código"><a class="link" href="#_verificación_estática_del_código">Verificación estática del código</a></h5>
+<div class="paragraph">
+<p>Otra razón importante para la introducción de los Type Hints es la posibilidad
+de realizar verificaciones estáticas del código. Las herramientas de análisis
+estático pueden utilizar estas anotaciones de tipo para detectar posibles errores
+y problemas en tiempo de compilación, antes de que el código se ejecute. Esto
+ayuda a identificar y corregir errores más rápidamente, mejorando la calidad y
+la robustez del software desarrollado en Python.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_evitar_bugs"><a class="link" href="#_evitar_bugs">Evitar bugs</a></h5>
+<div class="paragraph">
+<p>Los Type Hints también ayudan a prevenir bugs al proporcionar una forma más
+clara y precisa de especificar los tipos de datos que una función puede manejar.
+Al detectar y corregir problemas de tipo antes de la ejecución del código,
+se reduce significativamente la posibilidad de errores relacionados con la
+manipulación incorrecta de datos, lo que resulta en un software más fiable y
+menos propenso a fallos.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_su_uso_en_los_ides"><a class="link" href="#_su_uso_en_los_ides">Su uso en los IDEs</a></h5>
+<div class="paragraph">
+<p>La introducción de Type Hints en Python ha sido especialmente beneficiosa para
+los desarrolladores que utilizan IDEs populares como Visual Studio Code (VSCode)
+y PyCharm. Estos entornos de desarrollo integrados han agregado el soporte para
+Type Hints, ofreciendo características como autocompletado de código, navegación
+rápida a definiciones y detección de errores en tiempo real basados en las
+anotaciones de tipo.</p>
+</div>
+<div class="paragraph">
+<p>Además, herramientas externas como <a href="https://mypy-lang.org/">mypy</a> y
+<a href="https://flake8.pycqa.org/en/latest/">flake8</a> se han vuelto indispensables en el
+ecosistema de desarrollo de Python. <strong>mypy</strong> es un verificador estático de tipos
+para Python que utiliza Type Hints para detectar errores de tipo en el código,
+mientras que <strong>flake8</strong> es una herramienta de linting que puede analizar el
+código en busca de violaciones de estilo y posibles errores. La combinación
+de Type Hints con estas herramientas de verificación y linting proporciona
+una experiencia de desarrollo más fluida y productiva, permitiendo a los
+desarrolladores escribir código de manera más eficiente, con menos errores
+y siguiendo las mejores prácticas de programación.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_anotaciones_básicas_de_tipo_usando_type_hints"><a class="link" href="#_anotaciones_básicas_de_tipo_usando_type_hints">Anotaciones básicas de tipo usando Type Hints</a></h4>
+<div class="paragraph">
+<p>Para declarar una variable con un tipo específico en Python utilizando Type
+Hints, puedes utilizar la sintaxis de dos puntos <code>:</code> seguido del tipo de
+dato deseado. A continuación, se muestra un ejemplo de cómo declarar una
+variable de tipo <code>str</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Pepe</span><span class="sh">"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo, la variable nombre está declarada como una cadena (str).
+Aunque Python sigue siendo un lenguaje de tipado dinámico y la declaración
+de tipo es opcional, las anotaciones de tipo proporcionan una indicación
+clara del tipo de datos que se espera que contenga la variable, lo cual es
+útil para los desarrolladores que revisan o mantienen el código.</p>
+</div>
+<div class="paragraph">
+<p>Las Type Hints también pueden ser utilizadas en la definición de funciones
+para especificar los tipos de los parámetros que la función recibe y el
+tipo del valor que la función devuelve. A continuación, se muestra un ejemplo
+de cómo definir una función que utiliza Type Hints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s">!</span><span class="sh">"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo, la función saludar recibe un parámetro nombre de tipo <code>str</code> y
+devuelve un valor de tipo <code>str</code>. Al especificar los tipos de los parámetros y
+del valor de retorno con Type Hints, se mejora la claridad y la comprensión
+del propósito y el comportamiento de la función, facilitando su uso y su
+mantenimiento.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_type_hints_comunes"><a class="link" href="#_type_hints_comunes">Type Hints comunes</a></h4>
+<div class="paragraph">
+<p>Los Type Hints de Python son muy versátiles para indicar el tipo de las variables
+permitiendo ser applicacdos en una gran variedad de situaciones, por ejemplo:</p>
+</div>
+<div class="ulist">
+<div class="title">Tipos "primitivos":</div>
+<ul>
+<li>
+<p><code>int</code>, <code>float</code>, <code>bool</code>, <code>str</code>, <code>None</code>, etc</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Colecciones:</div>
+<ul>
+<li>
+<p><code>List[int]</code>, <code>Tuple[str, int]</code>, <code>Dict[str, float]</code>, etc &#8656; observar que se marcan con “[“ y “]”</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>De esta manera le estamos indicando al desarrollador que tipo de datos pueden contener
+la colección en referencia.</p>
+</div>
+<div class="ulist">
+<div class="title">Clases propias:</div>
+<ul>
+<li>
+<p>El uso de los Type Hints no está restringido a los tipos propios del lenguaje,
+sino que además podemos utilizarlas para clarificar nuestras propias clases.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_type_hints_avanzados"><a class="link" href="#_type_hints_avanzados">Type Hints avanzados</a></h4>
+<div class="paragraph">
+<p>En Python es común que las fuciones puedan recibir parámetros de diversa índole,
+lo que lo hace adaptable a diversas situaciones. El módulo <code>typing</code> cuenta con las
+clases <code>Union</code> y <code>Optional</code>, que permiten realizar esta funcionalidad. Para
+ello se hace necesario que al momento de querer usarlos, previamente hallamos
+importados tales clases desde el módulo.</p>
+</div>
+<div class="paragraph">
+<p>El siguiente ejemplo, muestra el uso de la clase <code>Union</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lo que el código nos está indicando es que la función <code>process_data</code>, recibe un parámetro
+que puede ser de tipo <code>int</code> o de tipo <code>float</code> y que el resultado que va a retornar será
+de tipo <code>str</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>Optional</code> se usa en el caso de que un valor pueda ser o bien de un determinado tipo
+o de tipo <code>None</code>
+En este otro ejemplo, se muestra el uso de <code>Optional</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="k">def</span> <span class="nf">get_name</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Este segmento de código lo que nos está indicando que el valor de retorno del métdo
+<code>get_name()</code> puede ser de tipo <code>str</code> o <code>None</code>.</p>
+</div>
+<div class="paragraph">
+<p>A partir de Python3.10+, se hace uso del operador <code>|</code> (pipe), para hacer el código
+más compacto, y por lo tanto, agregarle legilibildad al mismo. haciendo uso de <code>|</code>
+y ano se hace necesario importar ni <code>Union</code> ni <code>Optional</code>, para indicar que
+un parámetro o valor de retorno puede tomar más de un valor o ser de tipo <code>None</code>.</p>
+</div>
+<div class="paragraph">
+<p>En el siguiente ejemplo vemos cómo redefinimos los segmentos de códigos anteriores
+para demostrar el uso del operador <code>|</code> como un Type Hint:</p>
+</div>
+<div class="paragraph">
+<p>Usado en sustitución de <code>Union</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usado en sustitución de <code>Optional</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">get_name</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="bp">None</span><span class="p">:</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Podemos apreciar que en ambos casos el código queda más legible y prácticamente
+nos está indicando por si mismo la naturaleza tanto de los parámetros que
+necesita o el tipo de retorno.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_funciones_generadoras"><a class="link" href="#_funciones_generadoras">1.3. Funciones Generadoras</a></h3>
+<div class="paragraph">
+<p>Aqui va lo referente a este apartado</p>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Previous: <a href="_introducción.html">Introducción</a> | ↑ Up: <a href="index.html">Guía Programación de APIs con Python</a> | Next: <a href="_bibliografía.html">Bibliografía</a> →</p>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version v0.1<br>
+Last updated 2024-04-04 20:14:56 -0400
+</div>
+</div>
+</body>
+</html>

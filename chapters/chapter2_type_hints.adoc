@@ -1,0 +1,191 @@
+=== Type Hints
+
+Los Type Hints, o anotaciones de tipo, son una característica introducida en 
+Python 3.5 que permite a los desarrolladores especificar el tipo de datos que 
+una variable puede contener o que una función puede recibir y devolver, para 
+lo cual se agregó el módulo `typing`. Aunque Python es un lenguaje de tipado 
+dinámico, los Type Hints proporcionan una forma de documentar y clarificar el 
+código, mejorando la legibilidad y la mantenibilidad del mismo.
+
+==== ¿Por qué surgieron los Type Hints en Python?
+
+Los Type Hints, o anotaciones de tipo, surgieron en Python como respuesta 
+a la necesidad de mejorar la claridad y la mantenibilidad del código en 
+proyectos grandes y complejos. A medida que Python ganaba popularidad en 
+el desarrollo de aplicaciones empresariales y científicas, se hizo evidente 
+que la falta de un sistema de tipos estático podía llevar a confusiones y 
+errores difíciles de depurar. Antes de la introducción de los Type Hints, 
+los desarrolladores dependían en gran medida de la documentación y los 
+comentarios para entender los tipos de datos que una función podría recibir 
+o devolver.
+
+Con el crecimiento de la comunidad de desarrollo y la adopción de prácticas 
+de programación más rigurosas, la necesidad de una forma más formal de especificar 
+tipos en Python se hizo cada vez más apremiante. Los Type Hints proporcionaron 
+una solución a este problema, permitiendo a los desarrolladores especificar de 
+manera explícita los tipos de datos esperados y retornados por una función, 
+mejorando así la legibilidad y la comprensión del código.
+
+La inclusión de Type Hints en Python no solo respondió a las demandas de los
+desarrolladores, sino que también alineó el lenguaje con las tendencias 
+actuales en el desarrollo de software, facilitando la integración con 
+herramientas de verificación estática y promoviendo mejores prácticas de 
+programación en la comunidad.
+
+==== Razones de la introducción de los Type Hints en Python
+
+===== Legibilidad y claridad
+
+Uno de los principales beneficios de utilizar Type Hints en Python es mejorar 
+la legibilidad y la claridad del código. Al proporcionar anotaciones de tipo, 
+los desarrolladores pueden entender rápidamente qué tipos de datos se esperan 
+y se devuelven en una función, sin tener que revisar extensamente la implementación 
+o la documentación. Esto facilita la colaboración entre equipos y reduce la 
+curva de aprendizaje para nuevos desarrolladores que se incorporan a un proyecto.
+
+===== Verificación estática del código
+
+Otra razón importante para la introducción de los Type Hints es la posibilidad 
+de realizar verificaciones estáticas del código. Las herramientas de análisis 
+estático pueden utilizar estas anotaciones de tipo para detectar posibles errores 
+y problemas en tiempo de compilación, antes de que el código se ejecute. Esto 
+ayuda a identificar y corregir errores más rápidamente, mejorando la calidad y 
+la robustez del software desarrollado en Python.
+
+===== Evitar bugs
+
+Los Type Hints también ayudan a prevenir bugs al proporcionar una forma más 
+clara y precisa de especificar los tipos de datos que una función puede manejar. 
+Al detectar y corregir problemas de tipo antes de la ejecución del código, 
+se reduce significativamente la posibilidad de errores relacionados con la 
+manipulación incorrecta de datos, lo que resulta en un software más fiable y 
+menos propenso a fallos.
+
+===== Su uso en los IDEs
+
+La introducción de Type Hints en Python ha sido especialmente beneficiosa para 
+los desarrolladores que utilizan IDEs populares como Visual Studio Code (VSCode) 
+y PyCharm. Estos entornos de desarrollo integrados han agregado el soporte para 
+Type Hints, ofreciendo características como autocompletado de código, navegación 
+rápida a definiciones y detección de errores en tiempo real basados en las 
+anotaciones de tipo. 
+
+Además, herramientas externas como https://mypy-lang.org/[mypy] y 
+https://flake8.pycqa.org/en/latest/[flake8] se han vuelto indispensables en el 
+ecosistema de desarrollo de Python. *mypy* es un verificador estático de tipos 
+para Python que utiliza Type Hints para detectar errores de tipo en el código, 
+mientras que *flake8* es una herramienta de linting que puede analizar el 
+código en busca de violaciones de estilo y posibles errores. La combinación 
+de Type Hints con estas herramientas de verificación y linting proporciona 
+una experiencia de desarrollo más fluida y productiva, permitiendo a los 
+desarrolladores escribir código de manera más eficiente, con menos errores 
+y siguiendo las mejores prácticas de programación.
+
+==== Anotaciones básicas de tipo usando Type Hints
+
+Para declarar una variable con un tipo específico en Python utilizando Type 
+Hints, puedes utilizar la sintaxis de dos puntos `:` seguido del tipo de 
+dato deseado. A continuación, se muestra un ejemplo de cómo declarar una 
+variable de tipo `str`:
+
+[source, python]
+----
+name: str = "Pepe"
+----
+
+En este ejemplo, la variable nombre está declarada como una cadena (str). 
+Aunque Python sigue siendo un lenguaje de tipado dinámico y la declaración 
+de tipo es opcional, las anotaciones de tipo proporcionan una indicación 
+clara del tipo de datos que se espera que contenga la variable, lo cual es 
+útil para los desarrolladores que revisan o mantienen el código.
+
+Las Type Hints también pueden ser utilizadas en la definición de funciones 
+para especificar los tipos de los parámetros que la función recibe y el 
+tipo del valor que la función devuelve. A continuación, se muestra un ejemplo 
+de cómo definir una función que utiliza Type Hints:
+
+[source, python]
+----
+def greet(name: str) -> str:
+    return f"Hola, {nombre}!"
+----
+
+En este ejemplo, la función saludar recibe un parámetro nombre de tipo `str` y 
+devuelve un valor de tipo `str`. Al especificar los tipos de los parámetros y 
+del valor de retorno con Type Hints, se mejora la claridad y la comprensión 
+del propósito y el comportamiento de la función, facilitando su uso y su 
+mantenimiento.
+
+==== Type Hints comunes
+
+Los Type Hints de Python son muy versátiles para indicar el tipo de las variables
+permitiendo ser applicacdos en una gran variedad de situaciones, por ejemplo:
+
+.Tipos "primitivos":
+* `int`, `float`, `bool`, `str`, `None`, etc
+
+.Colecciones:
+* `List[int]`, `Tuple[str, int]`, `Dict[str, float]`, etc <= observar que se marcan con “[“ y “]”
+
+De esta manera le estamos indicando al desarrollador que tipo de datos pueden contener
+la colección en referencia.
+
+.Clases propias:
+* El uso de los Type Hints no está restringido a los tipos propios del lenguaje, 
+sino que además podemos utilizarlas para clarificar nuestras propias clases.
+
+==== Type Hints avanzados
+
+En Python es común que las fuciones puedan recibir parámetros de diversa índole,
+lo que lo hace adaptable a diversas situaciones. El módulo `typing` cuenta con las 
+clases `Union` y `Optional`, que permiten realizar esta funcionalidad. Para
+ello se hace necesario que al momento de querer usarlos, previamente hallamos
+importados tales clases desde el módulo.
+
+El siguiente ejemplo, muestra el uso de la clase `Union`:
+
+[source, python]
+----
+from typing import Union
+def process_data(data: Union[int, float]) -> str
+----
+Lo que el código nos está indicando es que la función `process_data`, recibe un parámetro
+que puede ser de tipo `int` o de tipo `float` y que el resultado que va a retornar será
+de tipo `str`.
+
+`Optional` se usa en el caso de que un valor pueda ser o bien de un determinado tipo
+o de tipo `None`
+En este otro ejemplo, se muestra el uso de `Optional`:
+[source, python]
+----
+from typing import Optional
+def get_name() -> Optional[str]:
+----
+Este segmento de código lo que nos está indicando que el valor de retorno del métdo
+`get_name()` puede ser de tipo `str` o `None`.
+
+A partir de Python3.10+, se hace uso del operador `|` (pipe), para hacer el código
+más compacto, y por lo tanto, agregarle legilibildad al mismo. haciendo uso de `|`
+y ano se hace necesario importar ni `Union` ni `Optional`, para indicar que
+un parámetro o valor de retorno puede tomar más de un valor o ser de tipo `None`.
+
+En el siguiente ejemplo vemos cómo redefinimos los segmentos de códigos anteriores
+para demostrar el uso del operador `|` como un Type Hint:
+
+Usado en sustitución de `Union`:
+[source, python]
+----
+def process_data(data: int | float) -> str:
+----
+
+Usado en sustitución de `Optional`:
+[source, python]
+----
+def get_name -> str | None:
+----
+
+Podemos apreciar que en ambos casos el código queda más legible y prácticamente
+nos está indicando por si mismo la naturaleza tanto de los parámetros que
+necesita o el tipo de retorno.
+
+

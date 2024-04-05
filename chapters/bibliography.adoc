@@ -1,0 +1,7 @@
+== Bibliografía
+
+* Percival, Harry, and Bob Gregory. "Architecture Patterns with Python: Enabling
+* Test-Driven Development, Domain-Driven Design, and Event-Driven Microservices."
+* Percival, Harry. "Test-Driven Development with Python."
+* Official FastAPI Documentation: https://fastapi.tiangolo.com/
+* Newman, Sam. "Building Microservices: Designing Fine-Grained Systems."

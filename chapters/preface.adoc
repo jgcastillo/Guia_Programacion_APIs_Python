@@ -1,11 +1,27 @@
 == Prefacio
-El presente libro se ha escrito con la finalidad de 
-contar con un material que sirva de guía a los estudiantes 
-que cursan la materia "Programación de APIs con Python".
+Este libro ha sido diseñado con el objetivo de ofrecer una guía completa y práctica para aquellos estudiantes que están cursando esta interesante materia. Nuestro enfoque principal será fomentar las mejores prácticas en el desarrollo de APIs utilizando Python, combinando teoría y práctica para asegurar una comprensión profunda y aplicada de los temas abordados.
 
-Gran parte del material está fundamentado en dos libros
-importantes que han servido de inspiración para la presente
-guia. El primero es "Architecture Patterns with Python. Enabling
-Test_driven Development, Domain-Driven Desing, and Event-Driven
-Microservices" de Harry Percival y Bob Gregory y el segundo es
-"Test-Driven Development with Python" de Harry Percival
+Este curso se inspira en dos libros clave que han dejado una huella significativa en el mundo del desarrollo de software con Python: "Architecture Patterns with Python: Enabling Test-Driven Development, Domain-Driven Design, and Event-Driven Microservices" de Harry Percival y Bob Gregory, y "Test-Driven Development with Python" también de Harry Percival. Ambos libros nos brindan valiosas perspectivas y técnicas que se alinean perfectamente con los objetivos de nuestro curso.
+
+=== Estructura del Curso
+El curso está dividido en cinco unidades principales, cada una centrada en un aspecto crucial del desarrollo de APIs con Python:
+
+*Unidad 1: Aspectos avanzados de Python*
+En esta unidad, exploraremos conceptos avanzados de Python como programación orientada a objetos, herencia, type hints, funciones generadoras, decoradores, el uso de ambientes virtuales, así como las bibliotecas pydantic y FastAPI que son esenciales para el desarrollo de APIs modernas.
+
+*Unidad 2: El ambiente de desarrollo*
+Aquí nos sumergiremos en el mundo del desarrollo moderno, aprendiendo a utilizar herramientas como Docker, docker-compose y git para crear entornos de desarrollo eficientes y reproducibles.
+
+*Unidad 3: Desarrollo orientado a pruebas (TDD)*
+En esta unidad, adoptaremos la metodología de desarrollo orientado a pruebas (TDD), aprendiendo a escribir pruebas antes de implementar el código y comprendiendo los beneficios de esta práctica para asegurar la calidad y la fiabilidad del software.
+
+*Unidad 4: Desarrollo orientado al dominio (DDD)*
+Nos adentraremos en el desarrollo orientado al dominio (DDD), explorando cómo modelar y estructurar nuestro código de manera que refleje fielmente el dominio del problema y facilite la evolución y mantenibilidad del sistema.
+
+*Unidad 5: Diseño orientado a eventos (EDD)*
+Finalmente, exploraremos el diseño orientado a eventos (EDD), una arquitectura que nos permite construir sistemas robustos, escalables y flexibles mediante el uso de eventos como principales unidades de interacción y comunicación entre los componentes del sistema.
+
+=== ¿Cómo utilizar este libro?
+Este libro ha sido estructurado para acompañar y reforzar el contenido presentado en clase. Cada capítulo está diseñado para proporcionar una explicación detallada de los conceptos, acompañada de ejemplos prácticos y ejercicios que te ayudarán a consolidar tu comprensión y habilidades en el desarrollo de APIs con Python. Además, encontrarás referencias a los libros mencionados anteriormente, los cuales te recomiendo consultar para profundizar en los temas y obtener una perspectiva más amplia y detallada.
+
+Espero que este libro te sea de gran ayuda durante tu aprendizaje y te invite a explorar y disfrutar del apasionante mundo del desarrollo de APIs con Python.
